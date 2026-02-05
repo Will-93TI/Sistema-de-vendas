@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema Web de Materiais e Faturamento</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Sistema Web de Materiais e Faturamento</h1>
+    <p>Gestão de materiais, faturamento de itens e serviços, clientes, fornecedores, PIX e conciliação bancária.</p>
+  </header>
+
+  <main>
+    <nav class="tabs" aria-label="Módulos do sistema">
+      <button class="tab active" data-tab="dashboard">Dashboard</button>
+      <button class="tab" data-tab="materiais">Materiais</button>
+      <button class="tab" data-tab="faturamento">Faturamento</button>
+      <button class="tab" data-tab="clientes">Clientes</button>
+      <button class="tab" data-tab="fornecedores">Fornecedores</button>
+      <button class="tab" data-tab="pix">PIX</button>
+      <button class="tab" data-tab="conciliacao">Conciliação</button>
+    </nav>
+
+    <section id="dashboard" class="panel active">
+      <h2>Visão geral</h2>
+      <div class="cards" id="dashboardCards"></div>
+    </section>
+
+    <section id="materiais" class="panel">
+      <h2>Cadastro de materiais</h2>
+      <form id="materialForm" class="grid-form">
+        <input name="nome" placeholder="Nome do material" required />
+        <input name="unidade" placeholder="Unidade (kg, un, m²...)" required />
+        <input name="estoque" type="number" min="0" step="0.01" placeholder="Estoque" required />
+        <input name="preco" type="number" min="0" step="0.01" placeholder="Preço unitário" required />
+        <button type="submit">Cadastrar material</button>
+      </form>
+      <table>
+        <thead><tr><th>Nome</th><th>Unidade</th><th>Estoque</th><th>Preço</th><th>Ações</th></tr></thead>
+        <tbody id="materiaisTable"></tbody>
+      </table>
+    </section>
+
+    <section id="faturamento" class="panel">
+      <h2>Faturamento de itens materiais e serviços</h2>
+      <form id="invoiceForm" class="grid-form">
+        <select name="tipo" required>
+          <option value="material">Material</option>
+          <option value="servico">Serviço</option>
+        </select>
+        <input name="descricao" placeholder="Descrição" required />
+        <input name="quantidade" type="number" min="0.01" step="0.01" placeholder="Quantidade" required />
+        <input name="valorUnitario" type="number" min="0" step="0.01" placeholder="Valor unitário" required />
+        <button type="submit">Adicionar ao faturamento</button>
+      </form>
+      <table>
+        <thead><tr><th>Tipo</th><th>Descrição</th><th>Qtd</th><th>Valor unit.</th><th>Total</th><th>Ações</th></tr></thead>
+        <tbody id="invoicesTable"></tbody>
+      </table>
+      <p class="total" id="invoiceTotal"></p>
+    </section>
+
+    <section id="clientes" class="panel">
+      <h2>Cadastro de clientes</h2>
+      <form id="clientForm" class="grid-form">
+        <input name="nome" placeholder="Nome / Razão Social" required />
+        <input name="documento" placeholder="CPF/CNPJ" required />
+        <input name="email" type="email" placeholder="E-mail" required />
+        <input name="telefone" placeholder="Telefone" required />
+        <button type="submit">Cadastrar cliente</button>
+      </form>
+      <table>
+        <thead><tr><th>Nome</th><th>Documento</th><th>E-mail</th><th>Telefone</th><th>Ações</th></tr></thead>
+        <tbody id="clientsTable"></tbody>
+      </table>
+    </section>
+
+    <section id="fornecedores" class="panel">
+      <h2>Cadastro de fornecedores</h2>
+      <form id="supplierForm" class="grid-form">
+        <input name="nome" placeholder="Nome / Razão Social" required />
+        <input name="documento" placeholder="CPF/CNPJ" required />
+        <input name="categoria" placeholder="Categoria de fornecimento" required />
+        <input name="contato" placeholder="Contato" required />
+        <button type="submit">Cadastrar fornecedor</button>
+      </form>
+      <table>
+        <thead><tr><th>Nome</th><th>Documento</th><th>Categoria</th><th>Contato</th><th>Ações</th></tr></thead>
+        <tbody id="suppliersTable"></tbody>
+      </table>
+    </section>
+
+    <section id="pix" class="panel">
+      <h2>Integração com PIX</h2>
+      <form id="pixForm" class="grid-form">
+        <input name="chavePix" placeholder="Chave PIX" required />
+        <select name="tipoChave" required>
+          <option value="cpf">CPF</option>
+          <option value="cnpj">CNPJ</option>
+          <option value="email">E-mail</option>
+          <option value="telefone">Telefone</option>
+          <option value="aleatoria">Aleatória</option>
+        </select>
+        <input name="beneficiario" placeholder="Nome do beneficiário" required />
+        <button type="submit">Salvar configuração PIX</button>
+      </form>
+      <div id="pixConfig" class="pix-card"></div>
+    </section>
+
+    <section id="conciliacao" class="panel">
+      <h2>Conciliação bancária</h2>
+      <form id="reconciliationForm" class="grid-form">
+        <input name="data" type="date" required />
+        <input name="descricao" placeholder="Descrição da transação" required />
+        <input name="valor" type="number" step="0.01" placeholder="Valor" required />
+        <select name="status" required>
+          <option value="pendente">Pendente</option>
+          <option value="conciliado">Conciliado</option>
+        </select>
+        <button type="submit">Registrar transação</button>
+      </form>
+      <table>
+        <thead><tr><th>Data</th><th>Descrição</th><th>Valor</th><th>Status</th><th>Ações</th></tr></thead>
+        <tbody id="reconciliationTable"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
