@@ -1,4 +1,4 @@
-const storageKey = "sistema-vendas-data";
+const storageKey = "sistema-gestao-administrativa-data";
 
 const defaultState = {
   materiais: [],

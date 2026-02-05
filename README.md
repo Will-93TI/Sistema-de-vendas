@@ -1,4 +1,4 @@
-# Sistema de Vendas (Web)
+# Sistema de Gestão Administrativa (Web)
 
 Protótipo web para gestão de:
 
