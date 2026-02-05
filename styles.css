@@ -39,6 +39,7 @@ main {
 .tab {
   border: 1px solid var(--border);
   background: var(--panel);
+  color: var(--text);
   border-radius: 0.6rem;
   padding: 0.5rem 0.8rem;
   cursor: pointer;

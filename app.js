@@ -11,13 +11,19 @@ const defaultState = {
 
 const state = loadState();
 
+function cloneState(value) {
+  if (typeof structuredClone === "function") return structuredClone(value);
+  return JSON.parse(JSON.stringify(value));
+}
+
 function loadState() {
   const raw = localStorage.getItem(storageKey);
-  if (!raw) return structuredClone(defaultState);
+  if (!raw) return cloneState(defaultState);
   try {
-    return { ...structuredClone(defaultState), ...JSON.parse(raw) };
-  } catch {
-    return structuredClone(defaultState);
+    return { ...cloneState(defaultState), ...JSON.parse(raw) };
+  } catch (error) {
+    console.warn("Falha ao ler dados salvos. Estado será reiniciado.", error);
+    return cloneState(defaultState);
   }
 }
 
