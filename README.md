@@ -1,4 +1,4 @@
-# Sistema de Vendas (Web)
+# Sistema de Gestão Administrativa (Web)
 
 Protótipo web para gestão de:
 
@@ -9,19 +9,32 @@ Protótipo web para gestão de:
 - Configuração de integração PIX
 - Conciliação bancária
 
-## Como executar
+## Como rodar o sistema
 
-Como o projeto é front-end puro (HTML/CSS/JS), você pode abrir `index.html` diretamente no navegador.
+### Opção 1 (recomendada)
 
-Ou, se preferir um servidor local:
+```bash
+./start.sh
+```
+
+Depois, abra:
+
+- `http://localhost:8000`
+
+Você também pode informar outra porta:
+
+```bash
+./start.sh 8080
+```
+
+### Opção 2 (direto com Python)
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Acesse: `http://localhost:8000`
-
 ## Observações
 
 - Os dados são persistidos no `localStorage` do navegador.
 - Este projeto é um MVP de interface e regras básicas de cadastro/faturamento.
+- Se você estiver vendo título antigo no navegador, faça um hard refresh (`Ctrl+F5`) para limpar cache.
